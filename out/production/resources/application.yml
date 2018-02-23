@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: common,local
+  default: common,local
+---
+#Properties for the "common" profile, Which will contain properties common to all profiles
+spring:
+  profiles: common
+server:
+  contextPath: /reg
+  port: 9000
+token :
+  secret : 9SyECk96oDsTmkskgIieDI0cD/8FpnojlYSUJT5U9I/FGVmBz5oskmjOR8cbXTvoPjX+Pq/T/b1PqpHX0lYm0oCBjXWICA==
+---
+#Properties for the "qa" profile, to be used by developers on their laptop
+spring:
+  profiles: local
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/studentDB
+logging:
+  file: StudentData.log
+  level:
+    org.springframework: INFO
+    org.hibernate: INFO
+    com.pramod.shethe: INFO
+    b.c.e.u.UndertowEmbeddedServletContainer: INFO
+---
